@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Delete
+
+# Controls when the workflow will run
+on: [workflow_dispatch]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        token: ['${GH_TOKEN}']
+
+    env:
+      GITHUB_API_BASE_URL: https://api.github.com
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Delete Package
+        id: e
+        continue-on-error: true
+        run: |
+          curl \
+               -X DELETE \
+               -H "Accept: application/vnd.github.v3+json" \
+               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                  ${GITHUB_API_BASE_URL}/orgs/maven-new-name/packages/maven/com.nishtha.package1.java-project
