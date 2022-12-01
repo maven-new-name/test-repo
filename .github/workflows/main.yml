@@ -9,10 +9,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     
-    permissions:
-      packages: read
-      contents: read
-    
     strategy:
       fail-fast: false
       matrix:
@@ -32,5 +28,5 @@ jobs:
           curl \
                -X DELETE \
                -H "Accept: application/vnd.github.v3+json" \
-               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Authorization: Bearer ${{ secrets.PAT }}" \
                   ${GITHUB_API_BASE_URL}/orgs/maven-new-name/packages/maven/com.nishtha.package1.java-project
