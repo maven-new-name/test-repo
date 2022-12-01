@@ -28,5 +28,5 @@ jobs:
           curl \
                -X DELETE \
                -H "Accept: application/vnd.github.v3+json" \
-               -H "Authorization: Bearer ${{ secrets.PAT }}" \
+               -H "Authorization: Bearer ${{ secrets.PAT_NO_DELETE }}" \
                   ${GITHUB_API_BASE_URL}/orgs/maven-new-name/packages/maven/com.nishtha.package1.java-project
